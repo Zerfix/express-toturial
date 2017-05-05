@@ -1,0 +1,23 @@
+{
+  "name": "express-toturial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zerfix/express-toturial.git"
+  },
+  "author": "Zerfix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zerfix/express-toturial/issues"
+  },
+  "homepage": "https://github.com/Zerfix/express-toturial#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "pug": "^2.0.0-rc.1"
+  }
+}
