@@ -105,8 +105,16 @@ app.get("/components", function(req, res) {
 
 // nr 6 static files /////////////////////////////////////
 
-app.use(express.static("public"))
+app.use("/static", express.static("public"))
+app.use(express.static("images"))
 
+
+
+app.get("/static_serve", function(req, res) {
+	res.render("static", {
+
+	})
+})
 
 // //// /////////////////////////////////////////////////
 
