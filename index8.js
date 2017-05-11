@@ -69,7 +69,7 @@ app.get("/get", function(req, res) {
 	})
 })
 
-app.put("/", function(req, res) {
+app.post("/put", function(req, res) {
 	console.log("1")
 	Person.Update({name: req.body.name}, {age: req.body.age, nationality: req.body.nationality}, function(err, response) {
 		if(err) {
@@ -79,7 +79,7 @@ app.put("/", function(req, res) {
 	})
 })
 
-app.delete("/", function(req, res) {
+app.post("/delete", function(req, res) {
 	Person.Remove(req.body.name, function(err, response) {
 		if(err) {
 			res.json({message: "Error in deleting record name " + req.body.name})

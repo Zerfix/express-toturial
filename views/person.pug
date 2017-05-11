@@ -23,7 +23,8 @@ html
 		br
 		br
 		br
-		form(action="/", method="PUT")
+		form(action="/put", method="POST")
+			
 			div
 				label(for="name") Name:
 				input(name="name")
@@ -40,7 +41,7 @@ html
 		br
 		br
 		br
-		form(action="/", method="DELETE")
+		form(action="/delete", method="POST")
 			div
 				label(for="name") Name:
 				input(name="name")
