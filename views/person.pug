@@ -1,0 +1,48 @@
+html
+	head
+		title Person
+	body
+		form(action="/", method="POST")
+			div
+				label(for="name") Name:
+				input(name="name")
+			br
+			div
+				label(for="age") Age:
+				input(name="age")
+			br
+			div
+				label(for="nationality") Nationality:
+				input(name="nationality")
+			br
+			button(type="submit") Create new person
+		br
+		br
+		br
+		a(href="/get") Get all
+		br
+		br
+		br
+		form(action="/", method="PUT")
+			div
+				label(for="name") Name:
+				input(name="name")
+			br
+			div
+				label(for="age") New Age:
+				input(name="age")
+			br
+			div
+				label(for="nationality") New Nationality:
+				input(name="nationality")
+			br
+			button(type="submit") Update person
+		br
+		br
+		br
+		form(action="/", method="DELETE")
+			div
+				label(for="name") Name:
+				input(name="name")
+			br
+			button(type="submit") Delete person

@@ -1,24 +1,17 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var multer = require('multer');
-var upload = multer();
-var app = express();
+// tutorial: https://www.tutorialspoint.com/expressjs/
+// 2 Routing
 
-app.get('/', function(req, res){
-   res.render('form');
-});
+// express
+var express = require("express")
+var app 	= express()
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+// external .js
+var things  = require("./things.js")
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(upload.array()); // for parsing multipart/form-data
-app.use(express.static('public'));
 
-app.post('/', function(req, res){
-    console.log(req.body);
-    res.send("recieved your request!");
-});
+//
+app.use("/", things)
 
-app.listen(3000);
+
+// listen
+app.listen(3000)
