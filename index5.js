@@ -14,14 +14,14 @@ app.get("/pug", function(req, res) {
 	res.render("first_view")
 })
 
-app.get("/dynamic_view", function(req, res) {
+app.get("/", function(req, res) {
 	res.render("dynamic", {
 		name: "TutorialsPoint",
 		url:  "http:/www.tutorialspoint.com",
 	})
 })
 
-app.get("/dynamic_view_user", function(req, res) {
+app.get("/user", function(req, res) {
 	res.render("dynamic", {
 		user: {name: "zerfix", age: "9001"},
 		name: "TutorialsPoint",

@@ -1,14 +1,15 @@
 // tutorial: https://www.tutorialspoint.com/expressjs/
 // 8 Database
 
-// express
+// express /////
 var express = require("express")
 var app 	= express()
 
-// Parser
+// Parser /////
 var bodyParser	= require("body-parser")
+app.use(bodyParser.urlencoded({extended: true}))
 
-// mongodb
+// mongodb /////
 var mongoose = require("mongoose")
 mongoose.connect("mongodb://localhost:27017/my_db")
 
@@ -19,19 +20,19 @@ var personSchema = mongoose.Schema({
 })
 var Person = mongoose.model("Person", personSchema)
 
-// pug
+// pug /////
 app.set("view engine", "pug")
 app.set("views", "./views")
 
-
-// route
+// route //////////////////////////////////////////////////
+// root /////
 app.get("/", function(req, res) {
 	res.render("person")
 })
 
-app.use(bodyParser.urlencoded({extended: true}))
 
-app.post("/", function(req, res) {
+// post /////
+app.post("/post", function(req, res) {
 	var personInfo = req.body
 	if(!personInfo.name || !personInfo.age || !personInfo.nationality) {
 		res.render("show_message", {message: "Sorry, you provided wrong info", type: "error"})
@@ -53,22 +54,22 @@ app.post("/", function(req, res) {
 				res.render("show_message", {
 					message: "New person added",
 					type: "sucsess",
-					person: personInfo
+					person: newPerson
 				})
 			}
 		})
 	}
 })
 
+// get /////
 app.get("/get", function(req, res) {
-	console.log("1")
 	Person.find(function(err, response) {
-		console.log("2")
-		console.log(response)
-		res.render(json.stringify(response))
+		console.log()
+		// clarer ikke konvertere til response til object
 	})
 })
 
+// put /////
 app.post("/put", function(req, res) {
 	console.log("1")
 	Person.Update({name: req.body.name}, {age: req.body.age, nationality: req.body.nationality}, function(err, response) {
@@ -79,6 +80,7 @@ app.post("/put", function(req, res) {
 	})
 })
 
+// delete /////
 app.post("/delete", function(req, res) {
 	Person.Remove(req.body.name, function(err, response) {
 		if(err) {
@@ -90,5 +92,5 @@ app.post("/delete", function(req, res) {
 	})
 })
 
-// listen
+// listen /////////////////////////////////////////////////
 app.listen(3000)

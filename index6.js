@@ -14,9 +14,7 @@ app.use("/static", express.static("public"))
 app.use(express.static("images"))
 
 app.get("/", function(req, res) {
-	res.render("static", {
-
-	})
+	res.render("static")
 })
 
 

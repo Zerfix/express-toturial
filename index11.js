@@ -54,11 +54,14 @@ app.get("/signup", function(req, res) {
 app.post("/signup", function(req, res) {
 	console.log("2")
 	if(!req.body.id || !req.body.password) {
+		console.log("3T")
 		res.status("400")
 		res.send("invalid details!")
 	}
 	else {
+		console.log("3")
 		Users.filter(function(user) {
+			// denne delen kjører ikke!
 			if(user.id === req.body.id) {
 				res.render("signup", {message: "User Alredy Extist! Login or chose another user id"})
 			}
