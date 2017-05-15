@@ -32,16 +32,6 @@ var Users = []
 
 // Middleware Start ///////////////////////////////////////
 // is logged in /////
-function checkSignIn(req, res) {
-	if(req.session.user) {
-		next()
-	}
-	else{
-		var err = Error("Not logged in!")
-		console.log(req.session.user)
-		next(err)
-	}
-}
 
 
 // Routing ////////////////////////////////////////////////
@@ -61,17 +51,35 @@ app.post("/signup", function(req, res) {
 	else {
 		console.log("3")
 		Users.filter(function(user) {
-			// denne delen kjører ikke!
+			console.log("4")
 			if(user.id === req.body.id) {
-				res.render("signup", {message: "User Alredy Extist! Login or chose another user id"})
+				res.render("signup", {
+					message: "User Alredy Extist! Login or chose another user id"
+				})
 			}
-			var newUser = {id: req.body.id, password: req.body.password}
-			Users.push(newUser)
-			req.session.user = newUser
-			res.redirect("/protected_page")
 		})
+		console.log("5")
+		var newUser = {
+			id: req.body.id,
+			password: req.body.password
+		}
+		Users.push(newUser)
+		req.session.user = newUser
+		res.redirect("/protected_page")
 	}
 })
+
+function checkSignIn(req, res, next) {
+	if(req.session.user) {
+		next()
+	}
+	else{
+		var err = new Error("Not logged in!")
+		console.log(req.session.user)
+		next(err)
+	}
+}
+
 
 // login /////
 app.get("/protected_page", checkSignIn, function(req, res) {
@@ -100,10 +108,10 @@ app.post("/login", function(req, res) {
 
 // logout /////
 app.get("/logout", function(req, res) {
-	req.session.destroy(function(req, res) {
+	req.session.destroy(function(req2, res2) {
 		console.log("user logged out")
+		res.redirect("/")
 	})
-	res.redirect("login")
 })
 
 

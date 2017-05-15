@@ -64,7 +64,10 @@ app.post("/post", function(req, res) {
 // get /////
 app.get("/get", function(req, res) {
 	Person.find(function(err, response) {
-		console.log()
+		console.log(response)
+		res.render("list", {
+			users: response
+		})
 		// clarer ikke konvertere til response til object
 	})
 })
